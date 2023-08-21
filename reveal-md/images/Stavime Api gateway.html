@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:1948/slides.md#/6 -->
+<html lang="en" class="reveal-full-page"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Stavime Api gateway</title>
+    <link rel="shortcut icon" href="http://localhost:1948/favicon.ico">
+    <link rel="stylesheet" href="./Stavime Api gateway_files/reset.css">
+    <link rel="stylesheet" href="./Stavime Api gateway_files/reveal.css">
+    <link rel="stylesheet" href="./Stavime Api gateway_files/black.css" id="theme">
+    <link rel="stylesheet" href="./Stavime Api gateway_files/zenburn.css">
+
+    <link rel="stylesheet" href="./Stavime Api gateway_files/cntf.css">
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script><script src="./Stavime Api gateway_files/livereload.js"></script>
+  <style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><script type="text/javascript" src="./Stavime Api gateway_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none; box-sizing: content-box}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_test {font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.MathJax_test.mjx-test-display {display: table!important}
+.MathJax_test.mjx-test-inline {display: inline!important; margin-right: -1px}
+.MathJax_test.mjx-test-default {display: block!important; clear: both}
+.MathJax_ex_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60ex}
+.MathJax_em_box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60em}
+.mjx-test-inline .MathJax_left_box {display: inline-block; width: 0; float: left}
+.mjx-test-inline .MathJax_right_box {display: inline-block; width: 0; float: right}
+.mjx-test-display .MathJax_right_box {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.9') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.9') format('woff'), url('https://cdn.jsdelivr.net/npm/mathjax@2/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.9') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+  <body class="reveal-viewport" style="transition: -webkit-transform 0.8s ease 0s; --slide-width:1920px; --slide-height:1080px;"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+    <div class="reveal default center focused has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade" style="">
+      <div class="slides" style="width: 1920px; height: 1080px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(0.770667);"><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="past" style="top: 0px; display: none;" data-index-h="0"><!-- 
+-->
+
+<p>Co API Gateway je a proč ji potřebujeme</p>
+<aside class="notes"><p>Uvodni Stranka</p>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1-restapi-dnes.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1-restapi-dnes.png" hidden="" aria-hidden="true" class="past" style="top: 0px; display: none;" data-index-h="1"><!-- 
+-->
+
+<aside class="notes"><ul>
+<li>Obrazek chaosu kterej musime vytvorit</li>
+<li>Popis: <ul>
+<li>3 druhy REST API:<ul>
+<li>Api pro frontend</li>
+<li>Api pro komunikaci mezi internimi aplikacemi</li>
+<li>Api pro vymenu dat mezi nasi spolecnosti a 3 stranou</li>
+</ul>
+</li>
+<li>Pro kazdy druh muzeme chtit neco jineho<ul>
+<li>Jinou uroven zabezpeceni</li>
+<li>Jiny Accounting</li>
+<li>Jinou integraci s nasi infrastrukturou</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="past" style="top: 0px; display: none;" data-index-h="2"><!-- 
+-->
+
+<h4 id="rest-api-je-dnes-především-zdrojem-dat">REST API je dnes především zdrojem dat!</h4>
+<aside class="notes"><ul>
+<li>Popis:<ul>
+<li>Zduraznit zdroj dat!</li>
+<li>Zdurazni zdroj strukturovanych dat</li>
+<li>takovych ktere druha strana muze tridit, analyzovat a pouzit pro sve ucely</li>
+<li>UVest priklad se server page stranakama kde tato data byla "zahnojena html"</li>
+</ul>
+</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="past" style="top: 0px; display: none;" data-index-h="3"><!-- -->
+
+<h4 id="data-potřebujeme">Data potřebujeme</h4>
+<div id="left2">
+
+<ul>
+<li>konsolidovat</li>
+<li>bezpečně publikovat</li>
+<li>integrovat</li>
+</ul>
+<p>...zkrátka mít nad nimi kontrolu!</p>
+</div>
+
+
+<aside class="notes"><ul>
+<li><br></li>
+<li>nutne zminit ze jejich velikost roste<br></li>
+<li>(zminka) jazyk c<br></li>
+<li>integrace myšleno mezi sebou i s naší infrastrukturou</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="past" style="top: 341px; display: block;" data-index-h="4"><!-- -->
+
+<h4 id="co-je-api-gateway">Co je Api Gateway</h4>
+<ul>
+<li>Reverzní proxy která:<ul>
+<li>je orientována na práci s REST požadavky</li>
+<li>umožnuje jejich filtering, transformace, apod.</li>
+<li>integruje naše API s dalšími prvky naší infrastruktury.</li>
+<li>další možné funkce: <ul>
+<li>service discovery</li>
+<li>rate limiting</li>
+<li>circuit breaking atd</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<aside class="notes"><ul>
+<li>Popis:<ul>
+<li>Integrace, zminit moznost provazat api treba s ad apod</li>
+<li>Service discovery, zminit moznost sd pomoci treba nejakeho jsonu</li>
+</ul>
+</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1-apigw-example.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1-apigw-example.png" hidden="" aria-hidden="true" class="past" style="top: 540px; display: block;" data-index-h="5"><!-- 
+-->
+
+
+<aside class="notes"><ul>
+<li>Popis:<ul>
+<li>proste reverzni proxy :)</li>
+</ul>
+</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" class="present" style="top: 368px; display: block;" data-index-h="6"><!-- -->
+
+<table>
+<thead>
+<tr>
+<th align="left">Api Gateway</th>
+<th align="left">Reverse Proxy/Ingress</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Zaměřena na manipulaci s rest požadavky</td>
+<td align="left">Zeměření na přístup k aplikaci</td>
+</tr>
+<tr>
+<td align="left">Mix obecné a "fine grained" konfigurace</td>
+<td align="left">Obecná konfigurace</td>
+</tr>
+<tr>
+<td align="left">Transfomace request/response, views..</td>
+<td align="left">SSL terminace, segmentace</td>
+</tr>
+<tr>
+<td align="left">Service owner: vývoj/infrastruktura</td>
+<td align="left">Service owner: infrastruktura</td>
+</tr>
+</tbody></table>
+<aside class="notes"><ul>
+<li>budem muset hodne upravit - nejsem ve forme :/</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" class="future" style="top: 494px; display: block;" hidden="" aria-hidden="true" data-index-h="7"><!-- -->
+
+<p>DYI Api Gateway</p>
+</section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1-openresty.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1-openresty.png" class="future" style="top: 540px; display: block;" hidden="" aria-hidden="true" data-index-h="8"><!-- 
+-->
+
+
+</section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="9"><!-- -->
+
+<h4 id="openresty-nginx--lua-vm---api-gateway-pro-odvážné-">OpenResty (Nginx + Lua VM) - Api Gateway pro odvážné :)</h4>
+<div if="left2">
+
+<ul>
+<li>Modifikovaní flow pomocí lua skriptů</li>
+<li>Spousta pluginů</li>
+<li>Často jako základ jiných sw (Kong, ruzná CMS apod)</li>
+</ul>
+</div>
+
+<div id="resources">
+
+<p><a href="https://openresty.org/">https://openresty.org/</a><br>
+<a href="https://github.com/openresty/lua-nginx-module">https://github.com/openresty/lua-nginx-module</a><br>
+<a href="https://openresty-reference.readthedocs.io/en/latest/Directives/">https://openresty-reference.readthedocs.io/en/latest/Directives/</a></p>
+</div>
+
+<aside class="notes"><ul>
+<li><br></li>
+<li>flow myslime nginx flow<br></li>
+<li>zminit mozne integrace se redisem apod<br></li>
+<li>zminit performance <br></li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="10"><!-- -->
+
+<h4 id="openresty---příklad-konfigurace">OpenResty - příklad konfigurace</h4>
+<pre class="code-wrapper"><code class="hljs awk">location /mutex {
+            set <span class="hljs-variable">$locid</span> <span class="hljs-number">14</span>;
+            access_by_lua_block {
+
+                -- Main
+                local mutexes = ngx.shared.mutexes;
+                local session_id = ngx.var.arg_id;
+                local mutex, err = mutexes:get(session_id)
+
+                <span class="hljs-keyword">if</span> mutex == nil then
+                  local ok, err, force = mutexes:add(session_id,<span class="hljs-number">1</span>, <span class="hljs-number">5</span>);
+                  ngx.<span class="hljs-keyword">exit</span>(ngx.HTTP_CREATED);
+                end;
+
+                ngx.<span class="hljs-keyword">exit</span>(ngx.HTTP_NO_CONTENT);
+              }
+}
+</code></pre></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="11"><!-- -->
+
+<h4 id="proč-openresty">Proč Openresty</h4>
+<ul>
+<li>Je to Nginx :)</li>
+<li>Lua skriptování je jednoduchý ale velmi mocný nástroj</li>
+<li>Spousta pluginů</li>
+<li>Široká komunita</li>
+<li>Slušný výkon</li>
+</ul>
+</section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" class="future" style="top: 0px; display: none;" hidden="" aria-hidden="true" data-index-h="12"><!-- -->
+
+<h4 id="openresty---temná-strana-síly">Openresty - temná strana síly</h4>
+<ul>
+<li>Mix infrastruktury a vývoje</li>
+<li>Naročné na údržbu a deployment</li>
+<li>Některé pluginy jsou oneman show s diskutabilní podporou</li>
+<li>Občas složité kódování logiky (např. zavislé na response body)<ul>
+<li>pro některé případy může být vhodnějši NGINX Javascript module (je možné oba moduly kombinovat)</li>
+</ul>
+</li>
+</ul>
+</section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="future" style="top: 0px; display: none;" data-index-h="13"><!-- -->
+
+<h4 id="krakend">Krakend</h4>
+<div id="left2">
+
+<ul>
+<li>CE je Stateless</li>
+<li>Napsán v golangu</li>
+<li>Konfigurace je v jsonu, možnost použití designeru</li>
+<li>Podpora pro: Filtering a transfrmace http requestů<ul>
+<li>OIDC</li>
+<li>Rate Limiting</li>
+<li>Circuit breaking</li>
+</ul>
+</li>
+<li>Rozšiřitelný pomocí pluginů</li>
+</ul>
+</div>
+
+<aside class="notes"><ul>
+<li><br></li>
+<li>"Pokud je openresty reseni pro odvazne pak krakend je resenim pro line :)"</li>
+<li>ukazka designeru</li>
+<li>OIDC je podpora pouze implicitniho flow - tyka se ce edice</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="future" style="top: 0px; display: none;" data-index-h="14"><!-- -->
+
+<h4 id="krakend---příklad-konfigurace">Krakend - příklad konfigurace</h4>
+<pre class="code-wrapper"><code class="hljs json">        {
+          <span class="hljs-attr">"endpoint"</span>: <span class="hljs-string">"/simple/articles"</span>,
+          <span class="hljs-attr">"method"</span>: <span class="hljs-string">"GET"</span>,
+          <span class="hljs-attr">"extra_config"</span>: {
+              <span class="hljs-attr">"github.com/devopsfaith/krakend-jose/validator"</span>: {
+                  <span class="hljs-attr">"alg"</span>: <span class="hljs-string">"RS256"</span>,
+                  <span class="hljs-attr">"roles_key"</span>: <span class="hljs-string">"groups"</span>,
+                  <span class="hljs-attr">"roles"</span>: [<span class="hljs-string">"simple-admin"</span>,<span class="hljs-string">"simple-user"</span>],
+                  <span class="hljs-attr">"jwk-url"</span>: <span class="hljs-string">"https://secure-keycloak-keycloak.route.local/auth/realms/lab/protocol/openid-connect/certs"</span>,
+                  <span class="hljs-attr">"disable_jwk_security"</span>: <span class="hljs-literal">true</span>
+              }
+           },
+          <span class="hljs-attr">"backend"</span>: [
+            {
+              <span class="hljs-attr">"url_pattern"</span>: <span class="hljs-string">"/articles"</span>,
+              <span class="hljs-attr">"encoding"</span>: <span class="hljs-string">"json"</span>,
+              <span class="hljs-attr">"is_collection"</span>: <span class="hljs-literal">true</span>,
+              <span class="hljs-attr">"extra_config"</span>: {
+                  <span class="hljs-attr">"github.com/devopsfaith/krakend/proxy"</span>: {
+                      <span class="hljs-attr">"flatmap_filter"</span>: [
+                          {
+                              <span class="hljs-attr">"type"</span>: <span class="hljs-string">"del"</span>,
+                              <span class="hljs-attr">"args"</span>: [<span class="hljs-string">"collection.*.Id"</span>]
+                          }
+                      ]
+                  }
+              }, 
+              <span class="hljs-attr">"host"</span>: [
+                <span class="hljs-string">"http://simpleapi.simple.svc.cluster.local:8080"</span>
+              ]
+            }</code></pre></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="future" style="top: 0px; display: none;" data-index-h="15"><!-- -->
+
+<h4 id="další-projekty">Další projekty</h4>
+<ul>
+<li>3scale</li>
+<li>Kong</li>
+<li>Tyk</li>
+<li>Traefik</li>
+<li>Plus projekty v rámci public cloud subscripce</li>
+</ul>
+<aside class="notes"><ul>
+<li>pouze vyjmenovat</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="future" style="top: 540px; display: none;" data-index-h="16"><!-- -->
+
+<h4 id="pasti-pasti-pastičky">Pasti, pasti, pastičky</h4>
+<div id="left2">
+
+<ul>
+<li>Bude naše apigw statefull nebo stateless ?<ul>
+<li>specialně pozor na nasazení v k8s</li>
+<li>statefull - možný dopad na škálování</li>
+</ul>
+</li>
+<li>Jak nasazení ovlivní provoz a deployment backend služeb ?</li>
+<li>Chceme některé funkcionality přenést z aplikace na apigw ? <ul>
+<li>typicky autorizace, session management apod...</li>
+</ul>
+</li>
+<li>Máme dostatek lidských zdrojů na implementaci požadovaného řešení ?</li>
+</ul>
+</div>
+
+<aside class="notes"><p>Popis:</p>
+<ul>
+<li>Ve statefull prostředí se pravdepodobně nevyhneme integraci s nějakým (key/val) storem (redis, memcached aj)</li>
+<li>Zduraznit ze apigw jako kazda konsolodujici sluzba jde primo proti cntf principu (preformulovat)</li>
+<li>Je potreba si dukladne rozmyslet dopady na sluzby z hlediska operations </li>
+<li>Lide jsou vetsion bud dobri programatori nebo dobri infra specialist, malokdy oboji.<ul>
+<li>Apigw je casto prunik obojiho.</li>
+</ul>
+</li>
+</ul>
+</aside></section><section data-markdown="" data-markdown-parsed="true" data-background="images/ApiGW-cntf-v1.png" data-background-size="1920px" data-background-image="images/ApiGW-cntf-v1.png" hidden="" aria-hidden="true" class="future" style="top: 540px; display: none;" data-index-h="17"><!-- -->
+
+</section><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="future" style="top: 540px; display: none;" data-index-h="18"></section></div>
+    <div class="slide-number" style="display: none;"></div><aside class="controls" data-controls-layout="bottom-right" data-controls-back-arrows="faded" style="display: block;"><button class="navigate-left enabled" aria-label="previous slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: none;"><span></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div class="aria-status" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);">Api Gateway Reverse Proxy/Ingress Zaměřena na manipulaci s rest požadavky Zeměření na přístup k aplikaci Mix obecné a "fine grained" konfigurace Obecná konfigurace Transfomace request/response, views.. SSL terminace, segmentace Service owner: vývoj/infrastruktura Service owner: infrastruktura </div><div class="backgrounds"><div class="slide-background past" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background past" data-background-hash="images/ApiGW-cntf-v1-restapi-dnes.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1-restapi-dnes.png&quot;);"></div></div><div class="slide-background past" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background past" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background past" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: block;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background past" data-background-hash="images/ApiGW-cntf-v1-apigw-example.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: block;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1-apigw-example.png&quot;);"></div></div><div class="slide-background present" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: block;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: block;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1-openresty.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: block;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1-openresty.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" data-loaded="true" style="display: none;"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" data-loaded="true" style="display: none;"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" data-loaded="true" style="display: none;"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" data-loaded="true" style="display: none;"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" data-loaded="true" style="display: none;"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;" data-loaded="true"><div class="slide-background-content" style="background-size: 1920px; background-image: url(&quot;images/ApiGW-cntf-v1.png&quot;);"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;"><div class="slide-background-content" style="background-size: 1920px;"></div></div><div class="slide-background future" data-background-hash="images/ApiGW-cntf-v1.png1920pxnullnullnullnullnullnullnullnull" data-background-size="1920px" style="display: none;"><div class="slide-background-content" style="background-size: 1920px;"></div></div><div class="slide-background future" style="display: none;"><div class="slide-background-content"></div></div></div></div>
+
+    <script src="./Stavime Api gateway_files/reveal.js"></script>
+
+    <script src="./Stavime Api gateway_files/markdown.js"></script>
+    <script src="./Stavime Api gateway_files/highlight.js"></script>
+    <script src="./Stavime Api gateway_files/zoom.js"></script>
+    <script src="./Stavime Api gateway_files/notes.js"></script>
+    <script src="./Stavime Api gateway_files/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":1920,"height":1080,"progress":false,"history":true}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; min-width: 0px; max-width: none; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size1, sans-serif;"></div></div></body></html>

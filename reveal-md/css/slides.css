@@ -1,0 +1,119 @@
+#bright {
+    color: deeppink;
+  }
+  
+  #left2 {
+      margin: 10px 0 15px 20px;
+      text-align: center;
+      float: left;
+      z-index:-10;
+      width:48%;
+      font-size: 0.85em;
+      line-height: 1.5;
+  }
+  
+  #right2 {
+      margin: 10px 0 15px 0;
+      float: right;
+      text-align: center;
+      z-index:-10;
+      width:48%;
+      font-size: 0.85em;
+      line-height: 1.5;
+  }
+  
+  #left3 {
+      margin: 10px 0 15px 20px;
+      text-align: center;
+      float: left;
+      z-index:-10;
+      width:31%;
+      font-size: 0.85em;
+      line-height: 1.5;
+  }
+  
+  #middle3 {
+      margin: 10px 0 15px 0;
+      float: right;
+      text-align: center;
+      z-index:-10;
+      width:31%;
+      font-size: 0.85em;
+      line-height: 1.5;
+  }
+  
+  #right3 {
+      margin: 10px 0 15px 0;
+      float: right;
+      text-align: center;
+      z-index:-10;
+      width:31%;
+      font-size: 0.85em;
+      line-height: 1.5;
+  }
+
+#dark_back {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 20px;
+}
+
+#header-left {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.reveal pre code {
+    display: block;
+    background-color: rgb(36, 36, 36);
+    padding: 5px;
+    overflow: auto;
+    max-height: 500px;
+    word-wrap: normal; }
+  
+.reveal code {
+    font-family: monospace;
+    font-size: 10pt;
+    text-transform: none; }
+
+.reveal h4 {
+    text-align: left;
+    text-indent: 10px;
+    color: #000; 
+  /*  color: #d01818; */
+    font-size: 32px; }
+
+.reveal h2 {
+        text-align: left;
+        color: #000;
+        font-size: 48px; }
+
+body {
+    background: #fff;
+    background-color: #fff; }
+      
+.reveal {
+    font-family: "Lato", sans-serif, VioletWasteland;
+    font-size: 40px;
+    font-weight: normal;
+    color: #000; }
+
+.reveal li {
+    font-size: 32px;
+    color: rgb(51, 49, 49);
+}
+
+.reveal h3 {
+    font-size: 1.55em;
+    color: #000; }
+
+#resources {
+        margin: 10px 0 15px 20px;
+        text-align: left;
+        float: left;
+        z-index:-10;
+        width:48%;
+        font-size: 16px;
+        line-height: 1.5;
+    }
